@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-const AppError = require('/utils/appError');
+const AppError = require('./utils/AppError');
 const globalErrorHandler = require('./middlewares/errorHandler')
 
 const app = express();
@@ -20,7 +20,7 @@ app.use('./api/products', productRouter);
 app.use('./api/cart', cartRouter);
 app.use('./api/orders', orderRouter);
 
-app.all('*', (req, res, next) => {
+app.all('/*catchall', (req, res, next) => {
     next(new AppError(`Cannot find ${req.originalUrl} on this server.`, 404))
 });
 

@@ -41,7 +41,6 @@ exports.addToCart = asyncHandler(async (req, res, next) => {
     if (!product) {
         return next(new AppError('Product not found.', 404));
     }
-})
 
 let cart = await Cart.findOne({userId: 'defaultUserId'});
 if (!cart) {
@@ -88,7 +87,7 @@ if (quantityToAdd > product.stock) {
       cart
     }
   });
-
+});
 
 exports.updateCartItem = asyncHandler(async (req, res, next) => {
   const { productId } = req.params;
